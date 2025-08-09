@@ -1,3 +1,5 @@
+"use client";
+import { usePathname } from "next/navigation";
 import { Home, Inbox, Settings, LogOut, FolderGit2 } from "lucide-react";
 
 import {
@@ -13,12 +15,13 @@ import {
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 // Menu items
 const items = [
   {
     title: "Dashboard",
-    url: "#",
+    url: "/admin/dashboard",
     icon: Home,
   },
   {
@@ -28,17 +31,19 @@ const items = [
   },
   {
     title: "Messages",
-    url: "#",
+    url: "/admin/dashboard/messages",
     icon: Inbox,
   },
   {
     title: "Settings",
-    url: "#",
+    url: "/admin/dashboard/settings",
     icon: Settings,
   },
 ];
 
 export function DashboardSidebar() {
+  const pathname = usePathname();
+
   return (
     <Sidebar>
       <SidebarHeader className="border-b px-6 py-4">
@@ -51,14 +56,11 @@ export function DashboardSidebar() {
             <SidebarMenu>
               {items.map((item) => (
                 <SidebarMenuItem key={item.title}>
-                  <SidebarMenuButton
-                    asChild
-                    isActive={item.title === "Dashboard"}
-                  >
-                    <a href={item.url}>
+                  <SidebarMenuButton asChild isActive={pathname === item.url}>
+                    <Link href={item.url}>
                       <item.icon />
                       <span>{item.title}</span>
-                    </a>
+                    </Link>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
               ))}
