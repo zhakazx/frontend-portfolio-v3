@@ -1,14 +1,4 @@
-import {
-  Calendar,
-  Home,
-  Inbox,
-  Search,
-  Settings,
-  Users,
-  BarChart3,
-  FileText,
-  LogOut,
-} from "lucide-react";
+import { Home, Inbox, Settings, LogOut, FolderGit2 } from "lucide-react";
 
 import {
   Sidebar,
@@ -32,34 +22,14 @@ const items = [
     icon: Home,
   },
   {
-    title: "Users",
-    url: "#",
-    icon: Users,
-  },
-  {
-    title: "Analytics",
-    url: "#",
-    icon: BarChart3,
-  },
-  {
-    title: "Reports",
-    url: "#",
-    icon: FileText,
+    title: "Projects",
+    url: "/admin/dashboard/projects",
+    icon: FolderGit2,
   },
   {
     title: "Messages",
     url: "#",
     icon: Inbox,
-  },
-  {
-    title: "Calendar",
-    url: "#",
-    icon: Calendar,
-  },
-  {
-    title: "Search",
-    url: "#",
-    icon: Search,
   },
   {
     title: "Settings",
