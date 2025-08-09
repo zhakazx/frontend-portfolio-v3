@@ -13,8 +13,8 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 
-const ENV_USERNAME = process.env.NEXT_PUBLIC_ADMIN_USER;
-const ENV_PASSWORD = process.env.NEXT_PUBLIC_ADMIN_PASS;
+const ENV_USERNAME = process.env.NEXT_PUBLIC_ADMIN_USERNAME;
+const ENV_PASSWORD = process.env.NEXT_PUBLIC_ADMIN_PASSWORD;
 
 export default function LoginForm() {
   const router = useRouter();
