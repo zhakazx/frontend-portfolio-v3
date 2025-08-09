@@ -9,7 +9,6 @@ export function useActiveSection() {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          console.log("Checking entry:", entry.target.id, entry.isIntersecting);
           if (entry.isIntersecting) {
             const sectionId = entry.target.id;
             setActiveSection(sectionId);
@@ -25,10 +24,6 @@ export function useActiveSection() {
     const timeout = setTimeout(() => {
       const sections = document.querySelectorAll("section[id]");
       sections.forEach((section) => observer.observe(section));
-      console.log(
-        "Sections observed:",
-        [...sections].map((s) => s.id)
-      );
     }, 100);
 
     return () => {

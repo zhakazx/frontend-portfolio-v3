@@ -20,9 +20,9 @@ export default function ProjectSection() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("/api/projects")
+    fetch("/api/projects") // api endpoint
       .then((res) => res.json())
-      .then((data: Project[]) => {
+      .then((data) => {
         setProjects(data);
         setLoading(false);
       })

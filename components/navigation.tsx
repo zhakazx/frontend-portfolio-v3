@@ -50,9 +50,9 @@ export function Navigation() {
             <Image
               src="/logo-zh.png"
               alt="Logo"
-              width={70}
-              height={70}
-              className="cursor-pointer"
+              width={50}
+              height={50}
+              className="cursor-pointer object-cover"
             />
           </Link>
           {/* Desktop Navigation */}

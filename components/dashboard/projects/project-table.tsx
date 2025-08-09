@@ -1,3 +1,6 @@
+"use client";
+
+import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
   Table,
@@ -18,9 +21,37 @@ import {
 } from "@/components/ui/dropdown-menu";
 import Link from "next/link";
 import Image from "next/image";
-import { projects } from "@/data/projects";
+import { Project } from "@/types/project"; // pastikan tipe Project sudah ada
 
 export function ProjectTable() {
+  const [projects, setProjects] = useState<Project[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const fetchProjects = async () => {
+      try {
+        const res = await fetch("/api/projects");
+        if (!res.ok) throw new Error(`Error ${res.status}`);
+        const data = await res.json();
+        setProjects(data);
+      } catch (err: any) {
+        setError(err.message || "Failed to fetch projects");
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchProjects();
+  }, []);
+
+  if (loading) {
+    return <p className="p-4 text-muted-foreground">Loading projects...</p>;
+  }
+
+  if (error) {
+    return <p className="p-4 text-red-500">Error: {error}</p>;
+  }
+
   return (
     <div className="rounded-md border">
       <Table>
