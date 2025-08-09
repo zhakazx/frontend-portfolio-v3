@@ -17,21 +17,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import Link from "next/link";
-import { Project } from "@/types/project";
 import { projects } from "@/data/projects";
-
-function getStatusBadge(project: Project) {
-  if (project.isPrivate) {
-    return <Badge variant="secondary">Private</Badge>;
-  }
-  if (project.liveUrl && project.codeUrl) {
-    return <Badge variant="default">Live</Badge>;
-  }
-  if (project.codeUrl) {
-    return <Badge variant="outline">Development</Badge>;
-  }
-  return <Badge variant="secondary">Draft</Badge>;
-}
 
 export default function ProjectsPage() {
   return (
@@ -58,7 +44,6 @@ export default function ProjectsPage() {
               <TableHead className="w-[50px]">
                 <Checkbox />
               </TableHead>
-              {/* <TableHead>Status</TableHead> */}
               <TableHead>Project Title</TableHead>
               <TableHead>Tech Stack</TableHead>
               <TableHead className="text-right">Actions</TableHead>
@@ -70,7 +55,6 @@ export default function ProjectsPage() {
                 <TableCell>
                   <Checkbox />
                 </TableCell>
-                {/* <TableCell>{getStatusBadge(project)}</TableCell> */}
                 <TableCell>
                   <div>
                     <div className="font-medium">{project.title}</div>
