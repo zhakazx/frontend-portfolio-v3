@@ -1,6 +1,6 @@
 [
   {
-    "id": 1,
+    "id": "1",
     "title": "E-Commerce Dashboard",
     "description": "A modern dashboard for managing e-commerce operations with real-time analytics and inventory management.",
     "image": "/modern-dashboard.png",
@@ -9,7 +9,7 @@
     "codeUrl": "https://github.com/username/project"
   },
   {
-    "id": 2,
+    "id": "2",
     "title": "Banking Mobile App",
     "description": "A secure mobile banking application with biometric authentication and real-time transaction monitoring. (Client Project - Code Confidential)",
     "image": "/task-management-app.png",
@@ -18,7 +18,7 @@
     "isPrivate": true
   },
   {
-    "id": 3,
+    "id": "3",
     "title": "Weather App",
     "description": "A beautiful weather application with location-based forecasts and interactive weather maps.",
     "image": "/weather-app-interface.png",
@@ -26,7 +26,7 @@
     "codeUrl": "https://github.com/username/project"
   },
   {
-    "id": 4,
+    "id": "4",
     "title": "Enterprise CRM System",
     "description": "Internal CRM system for managing customer relationships and sales pipeline. (Proprietary - Demo Available)",
     "image": "/portfolio-website-design.png",
@@ -34,7 +34,7 @@
     "isPrivate": true
   },
   {
-    "id": 5,
+    "id": "5",
     "title": "Chat Application",
     "description": "Real-time chat application with group messaging, file sharing, and emoji reactions.",
     "image": "/chat-application-interface.png",
@@ -43,7 +43,7 @@
     "codeUrl": "https://github.com/username/project"
   },
   {
-    "id": 6,
+    "id": "6",
     "title": "Blog Platform",
     "description": "A full-featured blog platform with content management, SEO optimization, and comment system.",
     "image": "/blog-platform-interface.png",

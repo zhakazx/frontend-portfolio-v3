@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
@@ -20,8 +21,10 @@ import { Project } from "@/types/project";
 import { popularTechStack } from "@/data/popularTechStack";
 
 export default function CreateProjectPage() {
+  const router = useRouter();
+
   const [formData, setFormData] = useState<Project>({
-    id: Date.now(),
+    id: "",
     title: "",
     description: "",
     image: "",
@@ -32,6 +35,7 @@ export default function CreateProjectPage() {
   });
 
   const [newTech, setNewTech] = useState("");
+  const [imageFile, setImageFile] = useState<File | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleInputChange = (field: keyof Project, value: string | boolean) => {
@@ -58,15 +62,49 @@ export default function CreateProjectPage() {
     }));
   };
 
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files[0]) {
+      const file = e.target.files[0];
+      setImageFile(file);
+      setFormData((prev) => ({
+        ...prev,
+        image: URL.createObjectURL(file), // preview
+      }));
+    }
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    await new Promise((resolve) => setTimeout(resolve, 2000));
+    try {
+      const form = new FormData();
+      form.append("id", String(formData.id));
+      form.append("title", formData.title);
+      form.append("description", formData.description);
+      form.append("techStack", JSON.stringify(formData.techStack));
+      form.append("liveUrl", formData.liveUrl ?? "");
+      form.append("codeUrl", formData.codeUrl ?? "");
+      form.append("isPrivate", String(formData.isPrivate));
 
-    console.log("Project data:", formData);
-    alert("Project created successfully!");
-    setIsSubmitting(false);
+      if (imageFile) {
+        form.append("image", imageFile);
+      }
+
+      const res = await fetch("/api/projects", {
+        method: "POST",
+        body: form,
+      });
+
+      if (!res.ok) throw new Error("Failed to create project");
+      router.push("/admin/dashboard/projects");
+      alert("Project created successfully!");
+    } catch (error) {
+      console.error(error);
+      alert("Error creating project");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -131,16 +169,10 @@ export default function CreateProjectPage() {
                   <Label htmlFor="image">Project Image URL</Label>
                   <div className="flex gap-2">
                     <Input
-                      id="image"
-                      placeholder="https://example.com/image.jpg"
-                      value={formData.image}
-                      onChange={(e) =>
-                        handleInputChange("image", e.target.value)
-                      }
+                      type="file"
+                      accept="image/*"
+                      onChange={handleFileChange}
                     />
-                    <Button type="button" variant="outline" size="icon">
-                      <Upload className="h-4 w-4" />
-                    </Button>
                   </div>
                   <p className="text-xs text-muted-foreground">
                     Add a screenshot or preview image of your project
@@ -238,6 +270,7 @@ export default function CreateProjectPage() {
                   <Label htmlFor="liveUrl">Live URL</Label>
                   <Input
                     id="liveUrl"
+                    type="text"
                     placeholder="https://your-project.com"
                     value={formData.liveUrl}
                     onChange={(e) =>
@@ -252,6 +285,7 @@ export default function CreateProjectPage() {
                     <Github className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
                     <Input
                       id="codeUrl"
+                      type="text"
                       placeholder="https://github.com/username/project"
                       className="pl-10"
                       value={formData.codeUrl}

@@ -18,16 +18,27 @@ import { Project } from "@/types/project";
 export default function ProjectSection() {
   const [projects, setProjects] = useState<Project[]>([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    fetch("/api/projects") // api endpoint
-      .then((res) => res.json())
-      .then((data) => {
+    const fetchProjects = async () => {
+      try {
+        const res = await fetch("/api/projects");
+        if (!res.ok) throw new Error(`Error ${res.status}`);
+        const data = await res.json();
         setProjects(data);
+      } catch (err: any) {
+        setError(err.message || "Failed to fetch projects");
+      } finally {
         setLoading(false);
-      })
-      .catch(() => setLoading(false));
+      }
+    };
+    fetchProjects();
   }, []);
+
+  if (error) {
+    console.error("Error fetching projects:", error);
+  }
 
   const cardVariants = {
     hidden: { opacity: 0, y: 50 },
