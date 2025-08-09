@@ -12,79 +12,9 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { ExternalLink, Github } from "lucide-react";
 import Image from "next/image";
-import { useEffect } from "react";
 
-interface Project {
-  id: number;
-  title: string;
-  description: string;
-  image: string;
-  techStack: string[];
-  liveUrl?: string; // Make optional
-  codeUrl?: string; // Make optional
-  isPrivate?: boolean; // Add flag for private projects
-}
-
-const projects: Project[] = [
-  {
-    id: 1,
-    title: "E-Commerce Dashboard",
-    description:
-      "A modern dashboard for managing e-commerce operations with real-time analytics and inventory management.",
-    image: "/modern-dashboard.png",
-    techStack: ["React", "Next.js", "TypeScript", "Tailwind CSS", "Prisma"],
-    liveUrl: "https://example.com",
-    codeUrl: "https://github.com/username/project",
-  },
-  {
-    id: 2,
-    title: "Banking Mobile App",
-    description:
-      "A secure mobile banking application with biometric authentication and real-time transaction monitoring. (Client Project - Code Confidential)",
-    image: "/task-management-app.png",
-    techStack: ["React Native", "TypeScript", "Redux", "Firebase"],
-    liveUrl: "https://example.com",
-    isPrivate: true,
-  },
-  {
-    id: 3,
-    title: "Weather App",
-    description:
-      "A beautiful weather application with location-based forecasts and interactive weather maps.",
-    image: "/weather-app-interface.png",
-    techStack: ["React Native", "TypeScript", "Redux", "Weather API"],
-    codeUrl: "https://github.com/username/project",
-  },
-  {
-    id: 4,
-    title: "Enterprise CRM System",
-    description:
-      "Internal CRM system for managing customer relationships and sales pipeline. (Proprietary - Demo Available)",
-    image: "/portfolio-website-design.png",
-    techStack: ["Vue.js", "Node.js", "PostgreSQL", "Docker"],
-    isPrivate: true,
-  },
-  {
-    id: 5,
-    title: "Chat Application",
-    description:
-      "Real-time chat application with group messaging, file sharing, and emoji reactions.",
-    image: "/chat-application-interface.png",
-    techStack: ["React", "Firebase", "Material-UI", "WebRTC"],
-    liveUrl: "https://example.com",
-    codeUrl: "https://github.com/username/project",
-  },
-  {
-    id: 6,
-    title: "Blog Platform",
-    description:
-      "A full-featured blog platform with content management, SEO optimization, and comment system.",
-    image: "/blog-platform-interface.png",
-    techStack: ["Next.js", "Sanity CMS", "TypeScript", "Vercel"],
-    liveUrl: "https://example.com",
-    codeUrl: "https://github.com/username/project",
-  },
-];
+// import { Project } from "@/types/project";
+import { projects } from "@/data/projects";
 
 export default function ProjectSection() {
   const containerVariants = {
