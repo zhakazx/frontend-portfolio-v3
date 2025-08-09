@@ -33,7 +33,14 @@ const skillCategories = [
   {
     title: "Tools & Others",
     icon: Settings,
-    items: ["Git", "VS Code", "Docker", "Linux", "Responsive Design", "Agile"],
+    items: [
+      "Git",
+      "VS Code",
+      "Docker",
+      "Postman",
+      "Responsive Design",
+      "Agile",
+    ],
   },
 ];
 

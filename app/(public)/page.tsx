@@ -6,7 +6,7 @@ import ProjectSection from "@/components/project-section";
 import { SkillsSection } from "@/components/skills-section";
 import { Navigation } from "@/components/navigation";
 
-export default function Page() {
+export default function PublicPage() {
   return (
     <>
       <Navigation />

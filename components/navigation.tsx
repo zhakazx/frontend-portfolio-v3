@@ -46,11 +46,15 @@ export function Navigation() {
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center py-4">
-          {/* <Link href="/" className="text-2xl font-bold text-primary">
-            {"</>"}
-          </Link> */}
-          <Image src="/logo-zh.png" alt="Logo" width={70} height={70} />
-
+          <Link href="/" passHref>
+            <Image
+              src="/logo-zh.png"
+              alt="Logo"
+              width={70}
+              height={70}
+              className="cursor-pointer"
+            />
+          </Link>
           {/* Desktop Navigation */}
           <div className="hidden md:flex space-x-8">
             {navItems.map((item) => {
@@ -71,7 +75,6 @@ export function Navigation() {
               );
             })}
           </div>
-
           {/* Mobile Navigation */}
           <Sheet open={isOpen} onOpenChange={setIsOpen}>
             <SheetTrigger asChild className="md:hidden">
