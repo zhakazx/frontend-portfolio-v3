@@ -1,6 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import {
   Sheet,
@@ -45,9 +46,10 @@ export function Navigation() {
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center py-4">
-          <Link href="/" className="text-2xl font-bold text-primary">
+          {/* <Link href="/" className="text-2xl font-bold text-primary">
             {"</>"}
-          </Link>
+          </Link> */}
+          <Image src="/logo-zh.png" alt="Logo" width={70} height={70} />
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex space-x-8">
